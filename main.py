@@ -88,14 +88,15 @@ dict_params["cadence"] = 1                            # Show colored area for kn
 
 
 print("------------------------------------------------------------------------")
-print("Process input gif ...")
-video_dir = './Videos/'
-gif_dir = './Gifs/'
+print("Load input ...")
+raw_data_dir = './Raw_data/Gifs/'                     # Raw data (GIFs) that running analysis will be applied to.
+video_dir = '/.Processed_data/Videos/'                # Running analysis is stored as MP4 in this folder.
+gif_dir = './Processed_data/Gifs/'                    # Running analysis is stored as GIF in this folder.
 gif_name = 'eliud_kipchoge_sub2_marathon.gif'
 gif_name = 'jes_woods_nike_coach.gif'
 #gif_name = 'haile_gebrselassie_olympion_gold.gif'
 #gif_name = 'random_man.gif'
-image = tf.io.read_file(gif_dir + gif_name)
+image = tf.io.read_file(raw_data_dir + gif_name)
 image = tf.image.decode_gif(image)
 num_frames, image_height, image_width, _ = image.shape
 crop_region = init_crop_region(image_height, image_width)
