@@ -1,12 +1,9 @@
 import numpy as np
 import tensorflow as tf
-#from IPython.display import display
-#from matplotlib import pyplot as plt
 from crop_image import init_crop_region
 from crop_image import determine_crop_region
 from model import run_inference
 from helper_functions import draw_prediction_on_image
-#from helper_functions import progress
 from determine_running_direction import determine_running_direction
 from determine_leading_ankle import determine_leading_ankle
 from determine_center_of_mass import determine_center_of_mass
@@ -23,6 +20,17 @@ from determine_cadence import determine_cadence
 # Notes:
 # The "Nullpunkt" of the coordinate system is in the top left.
 # The leg length is calculated from femur + tibia. femur = max(hip - knee) & tibia = max(knee - ankle). If the frame rate of the gif is low, those max() values won't capture the actual maximal length of the femur and tibia.
+
+
+
+# To Do's:
+# Vertical distance (VD_stance, VD_flight)  --> Benötigt Erkennung für Bodenkontakt.
+# T_stance, T_flight                        --> Benötigt Erkennung für Bodenkontakt.
+# Schrittlänge                              --> ...
+# Winkel Ellbogen                           --> Bereits jetzt machbar.
+# Abstosswinkel                             --> Benötigt Erkennung für Bodenkontakt.
+# Auftrittswinkel                           --> Benötigt Erkennung für Bodenkontakt.
+# Kadenz                                    --> Video muss in Echtzeit abspielen.
 
 
 
@@ -46,17 +54,6 @@ KEYPOINT_DICT = {
     'left_ankle': 15,
     'right_ankle': 16
 }
-
-
-
-# To Do's:
-# Vertical distance (VD_stance, VD_flight)  --> Benötigt Erkennung für Bodenkontakt.
-# T_stance, T_flight                        --> Benötigt Erkennung für Bodenkontakt.
-# Schrittlänge                              --> ...
-# Winkel Ellbogen                           --> Bereits jetzt machbar.
-# Abstosswinkel                             --> Benötigt Erkennung für Bodenkontakt.
-# Auftrittswinkel                           --> Benötigt Erkennung für Bodenkontakt.
-# Kadenz                                    --> Video muss in Echtzeit abspielen.
 
 
 
@@ -202,8 +199,7 @@ for frame_idx in range(num_frames):
       close_figure=True,
       output_image_height=600)) # Creating an mp4 might require you to adjust this value (e.g. multiple of 16). 
   
-  crop_region = determine_crop_region(
-      keypoints_with_scores, image_height, image_width)
+  crop_region = determine_crop_region(keypoints_with_scores, KEYPOINT_DICT, image_height, image_width)
 
 
 

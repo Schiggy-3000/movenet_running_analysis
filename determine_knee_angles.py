@@ -1,8 +1,8 @@
 import math
 
 
-def determine_knee_angles(keypoints_with_scores, KEYPOINT_DICT):
 
+def determine_knee_angles(keypoints_with_scores, KEYPOINT_DICT):
 
     # Left knee angle.
     left_hip = KEYPOINT_DICT['left_hip']
@@ -62,7 +62,6 @@ def calculate_knee_angle(
         ankle_x,
         ankle_y):
     
-
     # The following calculations determine the angle between two vectors in clockwise directions.
     # Vector 1: From left knee to left hip.
     # Vector 2: From left knee to left ankle.

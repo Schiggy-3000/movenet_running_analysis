@@ -1,4 +1,3 @@
-
 def determine_center_of_mass(keypoints_with_scores, KEYPOINT_DICT):
 
     # Determine midpoint between shoulders.

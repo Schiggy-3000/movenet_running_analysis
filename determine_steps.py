@@ -1,5 +1,3 @@
-
-
 # This function NEEDS TO BE STREAMLINED.
 # Somethimes movenet_thunder is not that accurate the positions for joints jump around from frame to frame.
 # This messes up the step count.

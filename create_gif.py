@@ -1,6 +1,6 @@
-
 import imageio
 from tensorflow_docs.vis import embed
+
 
 
 def create_gif(images, duration, gif_dir, gif_name):

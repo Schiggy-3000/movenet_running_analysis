@@ -34,6 +34,8 @@ KEYPOINT_DICT = {
     'right_ankle': 16
 }
 
+
+
 # Maps bones to a matplotlib color name.
 KEYPOINT_EDGE_INDS_TO_COLOR = {
     (0, 1): 'm',
@@ -78,6 +80,7 @@ def _keypoints_and_edges_for_display(keypoints_with_scores,
       * the coordinates of all skeleton edges of all detected entities;
       * the colors in which the edges should be plotted.
   """
+
   keypoints_all = []
   keypoint_edges_all = []
   edge_colors = []
@@ -160,6 +163,7 @@ def draw_prediction_on_image(
     A numpy array with shape [out_height, out_width, channel] representing the
     image overlaid with keypoint predictions.
   """
+  
   height, width, channel = image.shape
   aspect_ratio = float(width) / height
   fig, ax = plt.subplots(figsize=(12 * aspect_ratio, 12))

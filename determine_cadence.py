@@ -1,4 +1,3 @@
-
 def determine_cadence(current_cadence, frame_idx, total_steps):
 
     cadence = current_cadence

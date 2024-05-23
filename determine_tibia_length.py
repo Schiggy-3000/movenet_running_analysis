@@ -1,5 +1,3 @@
-
-
 def determine_tibia_length(keypoints_with_scores, KEYPOINT_DICT):
 
 

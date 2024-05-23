@@ -1,6 +1,6 @@
-
 import imageio
 from tensorflow_docs.vis import embed
+
 
 
 def create_mp4(images, video_dir, video_name):
