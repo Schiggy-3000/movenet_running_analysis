@@ -90,7 +90,7 @@ dict_params["cadence"] = 1                            # Show colored area for kn
 print("------------------------------------------------------------------------")
 print("Load input ...")
 raw_data_dir = './Raw_data/Gifs/'                     # Raw data (GIFs) that running analysis will be applied to.
-video_dir = '/.Processed_data/Videos/'                # Running analysis is stored as MP4 in this folder.
+video_dir = './Processed_data/Videos/'                # Running analysis is stored as MP4 in this folder.
 gif_dir = './Processed_data/Gifs/'                    # Running analysis is stored as GIF in this folder.
 gif_name = 'eliud_kipchoge_sub2_marathon.gif'
 gif_name = 'jes_woods_nike_coach.gif'
