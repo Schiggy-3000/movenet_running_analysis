@@ -1,6 +1,5 @@
 # This function NEEDS TO BE STREAMLINED.
-
-# I reckon the solution is to only increase the step counter if two consecutive frames agree, that the leading ankle has changed.
+# The step counter is still messed up whenever movenet_thunder keypoints wiggle around too much.
 
 
 def determine_steps(keypoints_with_scores, KEYPOINT_DICT, total_steps, running_direction, leading_ankle_all_images):
