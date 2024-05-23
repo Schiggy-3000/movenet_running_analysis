@@ -24,7 +24,7 @@ def determine_steps(keypoints_with_scores, KEYPOINT_DICT, total_steps, running_d
             leading_ankle_this_frame = "right ankle"
 
 
-    # If the runner faces to the LEFT side of the image, then the leading ankle is determined by the SMALLERü x-value.
+    # If the runner faces to the LEFT side of the image, then the leading ankle is determined by the SMALLER x-value.
     if running_direction == "left":
         if left_ankle_x_value < right_ankle_x_value:
             leading_ankle_this_frame = "left ankle"
