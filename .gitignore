@@ -1,5 +1,17 @@
+# Ignore virtual environment and cache directories
 .venv/
 __pycache__/
-Processed_data/*
+
+# Ignore everything in Processed_data by default
+Processed_data/**
+
+# Allow the main Processed_data directory
+!Processed_data/
+
+# Allow specific subdirectories
+!Processed_data/Videos/
+!Processed_data/Gifs/
+
+# Allow only .gitkeep files in those subdirectories
 !Processed_data/Videos/.gitkeep
 !Processed_data/Gifs/.gitkeep
