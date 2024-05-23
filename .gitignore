@@ -1,4 +1,5 @@
 .venv/
 __pycache__/
 Processed_data/
-!Processed_data/.gitkeep
+!Processed_data/Videos/.gitkeep
+!Processed_data/Gifs/.gitkeep
