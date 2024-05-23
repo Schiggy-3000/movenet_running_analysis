@@ -1,11 +1,9 @@
 # This function NEEDS TO BE STREAMLINED.
-# Somethimes movenet_thunder is not that accurate and
-# the positions for joints wiggle around significantly from frame to frame.
-# This messes up the step count.
+
 # I reckon the solution is to only increase the step counter if two consecutive frames agree, that the leading ankle has changed.
 
 
-def determine_steps(keypoints_with_scores, KEYPOINT_DICT, total_steps, running_direction, leading_ankle):
+def determine_steps(keypoints_with_scores, KEYPOINT_DICT, total_steps, running_direction, leading_ankle_all_images):
 
     steps = total_steps
 
@@ -30,16 +28,23 @@ def determine_steps(keypoints_with_scores, KEYPOINT_DICT, total_steps, running_d
             leading_ankle_this_frame = "left ankle"
         else:
             leading_ankle_this_frame = "right ankle"
+    
+
+    # Store leading ankle.
+    leading_ankle_all_images.append(leading_ankle_this_frame)
 
 
-    # The first time the leading ankle is determined, we simply assign it.
-    if leading_ankle == "unknown":
-        leading_ankle = leading_ankle_this_frame
+    # Step counter logic:
     # If the leading ankle changes (from left to right or vice versa),
     # this means that a runner has taken one whole step. Visualize it, then you recognize that this is correct.
-    elif leading_ankle != leading_ankle_this_frame:
-        steps = total_steps + 1
-        leading_ankle = leading_ankle_this_frame
+    # Somethimes movenet_thunder is not that accurate and
+    # the positions for (ankle) joints wiggle around significantly from frame to frame.
+    # This can mess with the step count. In light of this, the step count is only increased whenever
+    # the leading ankle has changed for two consecutive frames. 
+    if len(leading_ankle_all_images) >= 3:
+        if leading_ankle_all_images[-1] == leading_ankle_all_images[-2] and leading_ankle_all_images[-1] != leading_ankle_all_images[-3]:
+
+            steps = total_steps + 1
 
 
-    return steps, leading_ankle
+    return steps, leading_ankle_all_images

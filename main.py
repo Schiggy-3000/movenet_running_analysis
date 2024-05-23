@@ -91,7 +91,7 @@ raw_data_dir = './Raw_data/Gifs/'                     # Raw data (GIFs) that run
 video_dir = './Processed_data/Videos/'                # Running analysis is stored as MP4 in this folder.
 gif_dir = './Processed_data/Gifs/'                    # Running analysis is stored as GIF in this folder.
 gif_name = 'eliud_kipchoge_sub2_marathon.gif'
-gif_name = 'jes_woods_nike_coach.gif'
+#gif_name = 'jes_woods_nike_coach.gif'
 #gif_name = 'haile_gebrselassie_olympion_gold.gif'
 #gif_name = 'random_man.gif'
 image = tf.io.read_file(raw_data_dir + gif_name)
@@ -111,9 +111,9 @@ model = module.signatures['serving_default']
 print("------------------------------------------------------------------------")
 print("Start inference ...")
 input_size = 256
-total_steps = 0 # This is a counter for the steps taken by a given runner.
-leading_ankle = "unknown"
-cadence = 0 # Initial cadence is set to 0. Is updated every 10 frames (= every second).
+total_steps = 0                     # This is a counter for the steps taken by a given runner.
+leading_ankle_all_images = []       # The leading ankle in each frame is stored in this array.
+cadence = 0                         # Initial cadence is set to 0. Is updated every 10 frames (= every second).
 output_images = []
 center_of_mass_y_all_images = []
 femur_length_all_images = []
@@ -172,7 +172,7 @@ for frame_idx in range(num_frames):
 
 
   # Determine_steps (= step counter).
-  (total_steps, leading_ankle) = determine_steps(keypoints_with_scores, KEYPOINT_DICT, total_steps, running_direction, leading_ankle)
+  (total_steps, leading_ankle_all_images) = determine_steps(keypoints_with_scores, KEYPOINT_DICT, total_steps, running_direction, leading_ankle_all_images)
   
 
   # Determine cadence.
