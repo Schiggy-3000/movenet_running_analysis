@@ -17,6 +17,7 @@ from determine_cadence import determine_cadence
 
 
 
+
 # Notes:
 # The "Nullpunkt" of the coordinate system is in the top left.
 # The leg length is calculated from femur + tibia. femur = max(hip - knee) & tibia = max(knee - ankle). If the frame rate of the gif is low, those max() values won't capture the actual maximal length of the femur and tibia.

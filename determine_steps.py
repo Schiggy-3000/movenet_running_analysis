@@ -1,5 +1,6 @@
 # This function NEEDS TO BE STREAMLINED.
-# Somethimes movenet_thunder is not that accurate the positions for joints jump around from frame to frame.
+# Somethimes movenet_thunder is not that accurate and
+# the positions for joints wiggle around significantly from frame to frame.
 # This messes up the step count.
 # I reckon the solution is to only increase the step counter if two consecutive frames agree, that the leading ankle has changed.
 
