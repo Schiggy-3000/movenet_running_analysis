@@ -136,6 +136,10 @@ def draw_prediction_on_image(
     center_of_mass_x,
     center_of_mass_y,
     center_of_mass_y_all_images,
+    distance_com_to_leading_ankle,
+    distance_com_to_trailing_ankle,
+    distance_com_to_leading_ankle_all_images,
+    distance_com_to_trailing_ankle_all_images,
     femur_length_all_images,
     tibia_length_all_images,
     left_knee_angle,
@@ -203,6 +207,9 @@ def draw_prediction_on_image(
   center_of_mass_y_min = max(center_of_mass_y_all_images) # See one line above. E.g. 0.5.
   vertical_distance = round(abs(center_of_mass_y_max - center_of_mass_y_min), 2) # Vertical distance (VD) relative to image height. E.g. 0.1.
 
+  distance_com_to_leading_ankle_max = round(max(distance_com_to_leading_ankle_all_images), 2)   # Max. distance between center of mass (com) and leading ankle. E.g. 0.1.
+  distance_com_to_trailing_ankle_max = round(max(distance_com_to_trailing_ankle_all_images), 2) # Max. distance between center of mass (com) and trailing ankle. E.g. 0.2.
+
   left_knee_angle_min = round(min(left_knee_angle_all_images), 0)
   right_knee_angle_min = round(min(right_knee_angle_all_images), 0)
   knee_angle_min = int(min(left_knee_angle_min, right_knee_angle_min))
@@ -241,15 +248,15 @@ def draw_prediction_on_image(
       ax.axvline(x=x_max, color='red', linestyle='--')
   
 
-  # Draw line at min. value of trailing angkle.
-  if dict_params["trailing_ankle_min"] == 1:
+  # Draw line at max. value of trailing ankle.
+  if dict_params["trailing_ankle_max"] == 1:
       x_min = trailing_ankle_x_min_value_all_images * width
       ax.axvline(x=x_min, color='red', linestyle='--')
 
 
   # Draw center of mass.
   if dict_params["center_of_mass"] == 1:
-    ax.scatter(center_of_mass_x * width, center_of_mass_y * height, color='red', s=700)
+    ax.scatter(center_of_mass_x * width, center_of_mass_y * height, color='orange', s=700)
 
 
   # Draw colored rectangle between center of mass and leading ankle.
@@ -476,11 +483,11 @@ def draw_prediction_on_image(
               bbox=dict(facecolor='white', edgecolor='none', alpha=1, pad=5))
   
 
-  # Add max. value of leading ankle as text.
+  # Add max. value of leading ankle to center of mass (com) as text.
   if dict_params["leading_ankle_max_txt"] == 1:    
       pos_x = width * 0.02
       pos_y = height * 0.55 # 10th pos.
-      rel_distance = round(leading_ankle_x_max_value_all_images / leg_length, 2)
+      rel_distance = round(distance_com_to_leading_ankle_max / leg_length, 2)
       text = "Leading ankle max. (relative to leg length): " + str(rel_distance)
       ax.text(x=pos_x,
               y=pos_y,
@@ -491,12 +498,12 @@ def draw_prediction_on_image(
               bbox=dict(facecolor='white', edgecolor='none', alpha=1, pad=5))
       
 
-  # Add min. value of trailing ankle as text.
-  if dict_params["trailing_ankle_min_txt"] == 1:    
+  # Add max. value of trailing ankle to center of mass (com) as text.
+  if dict_params["trailing_ankle_max_txt"] == 1:    
       pos_x = width * 0.02
       pos_y = height * 0.6 # 11th pos.
-      rel_distance = round(trailing_ankle_x_min_value_all_images / leg_length, 2)
-      text = "Trailing ankle min. (relative to leg length): " + str(rel_distance)
+      rel_distance = round(distance_com_to_trailing_ankle_max / leg_length, 2)
+      text = "Trailing ankle max. (relative to leg length): " + str(rel_distance)
       ax.text(x=pos_x,
               y=pos_y,
               s=text,

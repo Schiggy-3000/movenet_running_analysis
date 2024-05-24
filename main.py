@@ -7,6 +7,7 @@ from helper_functions import draw_prediction_on_image
 from determine_running_direction import determine_running_direction
 from determine_leading_and_trailing_ankle import determine_leading_and_trailing_ankle
 from determine_center_of_mass import determine_center_of_mass
+from determine_distance_from_com_to_ankles import determine_distance_from_com_to_ankles
 from determine_femur_length import determine_femur_length
 from determine_tibia_length import determine_tibia_length
 from create_gif import create_gif
@@ -67,9 +68,9 @@ dict_params["lines"] = 0                              # Show lines between point
 dict_params["leading_ankle"] = 1                      # Show line at leading ankle.
 dict_params["trailing_ankle"] = 1                     # Show line at trailing ankle.
 dict_params["leading_ankle_max"] = 1                  # Show line at max. value the leading ankle has reached so far.
-dict_params["trailing_ankle_min"] = 1                 # Show line at min. value the trailing ankle has reached so far.
+dict_params["trailing_ankle_max"] = 1                 # Show line at max. value the trailing ankle has reached so far.
 dict_params["leading_ankle_max_txt"] = 1              # Show max. value the leading ankle has reached so far.
-dict_params["trailing_ankle_min_txt"] = 1             # Show min. value the trialing ankle has reached so far.
+dict_params["trailing_ankle_max_txt"] = 1             # Show max. value the trialing ankle has reached so far.
 dict_params["center_of_mass"] = 1                     # Show center of mass.
 dict_params["leading_ankle_to_com"] = 1               # Show colored area between leading ankle and center of mass.
 dict_params["vertical_distance"] = 1                  # Show lines at min. and max. vertical position of center of mass.
@@ -96,7 +97,7 @@ raw_data_dir = './Raw_data/Gifs/'                     # Raw data (GIFs) that run
 video_dir = './Processed_data/Videos/'                # Running analysis is stored as MP4 in this folder.
 gif_dir = './Processed_data/Gifs/'                    # Running analysis is stored as GIF in this folder.
 gif_name = 'eliud_kipchoge_sub2_marathon.gif'
-gif_name = 'jes_woods_nike_coach.gif'
+#gif_name = 'jes_woods_nike_coach.gif'
 #gif_name = 'haile_gebrselassie_olympion_gold.gif'
 #gif_name = 'random_man.gif'
 image = tf.io.read_file(raw_data_dir + gif_name)
@@ -121,6 +122,8 @@ leading_ankle_all_images = []       # The leading ankle in each frame is stored 
 cadence = 0                         # Initial cadence is set to 0. Is updated every 10 frames (= every second).
 output_images = []
 center_of_mass_y_all_images = []
+distance_com_to_leading_ankle_all_images = []   # Contains the horizontal distance from the center of mass (com) to the leading ankle in all images.
+distance_com_to_trailing_ankle_all_images = []  # Contains the horizontal distance from the center of mass (com) to the trailing ankle in all images.
 leading_ankle_x_max_value_all_images = None
 trailing_ankle_x_min_value_all_images = None
 femur_length_all_images = []
@@ -160,6 +163,17 @@ for frame_idx in range(num_frames):
 
   # Determine center of mass.
   (center_of_mass_x, center_of_mass_y) = determine_center_of_mass(keypoints_with_scores, KEYPOINT_DICT)
+
+
+  # Determine distance between center of mass and leading/trailing ankle.
+  (distance_com_to_leading_ankle,
+   distance_com_to_trailing_ankle,
+   distance_com_to_leading_ankle_all_images,
+   distance_com_to_trailing_ankle_all_images) = determine_distance_from_com_to_ankles(leading_ankle_x_value,
+                                                                                      trailing_ankle_x_value,
+                                                                                      distance_com_to_leading_ankle_all_images,
+                                                                                      distance_com_to_trailing_ankle_all_images,
+                                                                                      center_of_mass_x)
 
 
   # Determine vertical distance.
@@ -204,6 +218,10 @@ for frame_idx in range(num_frames):
       center_of_mass_x,
       center_of_mass_y,
       center_of_mass_y_all_images,
+      distance_com_to_leading_ankle,
+      distance_com_to_trailing_ankle,
+      distance_com_to_leading_ankle_all_images,
+      distance_com_to_trailing_ankle_all_images,
       femur_length_all_images,
       tibia_length_all_images,
       left_knee_angle,
