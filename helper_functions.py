@@ -190,6 +190,22 @@ def draw_prediction_on_image(
    edge_colors) = _keypoints_and_edges_for_display(keypoints_with_scores,
                                                    height,
                                                    width)
+  
+
+  # Calculations.
+  # This way, we can use it in multiple spots later on and dont need to calculate it over and over.
+  # ATTENTION: The coordinate system has its (0,0) in the top left corner!
+  tibia_length = round(max(tibia_length_all_images), 2) # Tibia length relative to image height. E.g. 0.12.
+  femur_length = round(max(femur_length_all_images), 2) # Femur length relative to image height. E.g. 0.13.
+  leg_length = round(tibia_length + femur_length, 2)    # Leg length relative to image height. E.g. 0.25.
+
+  center_of_mass_y_max = min(center_of_mass_y_all_images) # (0,0) coordinates are in the top left if the image. Therefore, min(...) yields the point where the center of mass was highest. E.g. 0.4.
+  center_of_mass_y_min = max(center_of_mass_y_all_images) # See one line above. E.g. 0.5.
+  vertical_distance = round(abs(center_of_mass_y_max - center_of_mass_y_min), 2) # Vertical distance (VD) relative to image height. E.g. 0.1.
+
+  left_knee_angle_min = round(min(left_knee_angle_all_images), 0)
+  right_knee_angle_min = round(min(right_knee_angle_all_images), 0)
+  knee_angle_min = int(min(left_knee_angle_min, right_knee_angle_min))
 
 
   # Draw lines between joints.
@@ -283,8 +299,6 @@ def draw_prediction_on_image(
 
   # Draw line at vertical distance min. and vertical distance max.
   if dict_params["vertical_distance"] == 1:
-      center_of_mass_y_max = min(center_of_mass_y_all_images) # ATTENTION: The center of mass is measured from the top of the image. Therefore, min(...) yields the point where the center of mass was highest.
-      center_of_mass_y_min = max(center_of_mass_y_all_images) # See one line above.
       y_max = center_of_mass_y_max * height
       y_min = center_of_mass_y_min * height
       ax.axhline(y=y_max, color='orange', linestyle='--')
@@ -295,7 +309,6 @@ def draw_prediction_on_image(
   if dict_params["femur_length_txt"] == 1:
       pos_x = width * 0.35 # 2nd column
       pos_y = height * 0.9 # 2nd last pos.
-      femur_length = round(max(femur_length_all_images), 2)
       text = "Femur length (relative to img): " + str(femur_length)
       ax.text(x=pos_x,
               y=pos_y,
@@ -310,7 +323,6 @@ def draw_prediction_on_image(
   if dict_params["tibia_length_txt"] == 1:
       pos_x = width * 0.35 # 2nd column
       pos_y = height * 0.95 # last pos.
-      tibia_length = round(max(tibia_length_all_images), 2)
       text = "Tibia length (relative to img): " + str(tibia_length)
       ax.text(x=pos_x,
               y=pos_y,
@@ -325,7 +337,6 @@ def draw_prediction_on_image(
   if dict_params["leg_length_txt"] == 1:
       pos_x = width * 0.35 # 2nd column
       pos_y = height * 0.85 # 3th last pos.
-      leg_length = round(tibia_length + femur_length, 2)
       text = "Leg length (relative to img): " + str(leg_length)
       ax.text(x=pos_x,
               y=pos_y,
@@ -340,7 +351,6 @@ def draw_prediction_on_image(
   if dict_params["vertical_distance_txt"] == 1:    
       pos_x = width * 0.02
       pos_y = height * 0.95 # last pos.
-      vertical_distance =  round(abs(center_of_mass_y_max - center_of_mass_y_min), 2)
       text = "VD (relative to img): " + str(vertical_distance)
       ax.text(x=pos_x,
               y=pos_y,
@@ -400,9 +410,6 @@ def draw_prediction_on_image(
   if dict_params["knee_angle_min_txt"] == 1:    
       pos_x = width * 0.02
       pos_y = height * 0.3 # 5th pos.
-      left_knee_angle_min = min(left_knee_angle_all_images)
-      right_knee_angle_min = min(right_knee_angle_all_images)
-      knee_angle_min = int(round(min(left_knee_angle_min, right_knee_angle_min), 0))
       text = "Knee angle min.: " + str(knee_angle_min)
       ax.text(x=pos_x,
               y=pos_y,
@@ -417,8 +424,7 @@ def draw_prediction_on_image(
   if dict_params["left_knee_angle_min_txt"] == 1:    
       pos_x = width * 0.02
       pos_y = height * 0.85 # 3th last pos.
-      knee_angle_min = int(round(min(left_knee_angle_all_images), 0))
-      text = "Min. left knee angle: " + str(knee_angle_min)
+      text = "Min. left knee angle: " + str(left_knee_angle_min)
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
@@ -432,8 +438,7 @@ def draw_prediction_on_image(
   if dict_params["right_knee_angle_min_txt"] == 1:    
       pos_x = width * 0.02
       pos_y = height * 0.9 # 2nd last pos.
-      knee_angle_min = int(round(min(right_knee_angle_all_images), 0))
-      text = "Min. right knee angle: " + str(knee_angle_min)
+      text = "Min. right knee angle: " + str(right_knee_angle_min)
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
