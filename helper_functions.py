@@ -130,6 +130,9 @@ def draw_prediction_on_image(
     image,
     keypoints_with_scores,
     leading_ankle_x_value,
+    trailing_ankle_x_value,
+    leading_ankle_x_max_value_all_images,
+    trailing_ankle_x_min_value_all_images,
     center_of_mass_x,
     center_of_mass_y,
     center_of_mass_y_all_images,
@@ -182,11 +185,14 @@ def draw_prediction_on_image(
 
 
   # Call other helper function (_keypoints_and_edges_for_display) to determine points (keypoint_locs) and lines (keypoint_edges) between points.
-  (keypoint_locs, keypoint_edges, edge_colors) = _keypoints_and_edges_for_display(
-       keypoints_with_scores, height, width)
+  (keypoint_locs,
+   keypoint_edges,
+   edge_colors) = _keypoints_and_edges_for_display(keypoints_with_scores,
+                                                   height,
+                                                   width)
 
 
-  # Draw lines.
+  # Draw lines between joints.
   if dict_params["lines"] == 1:
     line_segments.set_segments(keypoint_edges)
     line_segments.set_color(edge_colors)
@@ -195,18 +201,34 @@ def draw_prediction_on_image(
       line_segments.set_color(edge_colors)
   
 
-  # Draw points.
+  # Draw points where joints are.
   if dict_params["points"] == 1:
     if keypoint_locs.shape[0]:
       scat.set_offsets(keypoint_locs)
 
 
   # Draw a vertical line at the leading ankle.
-  # This shall help to identify whether the center of mass is in the correct spot,
-  # once the front foot makes contact with the ground.
   if dict_params["leading_ankle"] == 1:
-    line_x_pixel = leading_ankle_x_value * width
-    ax.axvline(x=line_x_pixel, color='red')
+    x_pos = leading_ankle_x_value * width
+    ax.axvline(x=x_pos, color='red')
+
+
+  # Draw a vertical line at the trailing ankle.
+  if dict_params["trailing_ankle"] == 1:
+    x_pos = trailing_ankle_x_value * width
+    ax.axvline(x=x_pos, color='red')
+
+
+  # Draw line at max. value of leading ankle.
+  if dict_params["leading_ankle_max"] == 1:
+      x_max = leading_ankle_x_max_value_all_images * width
+      ax.axvline(x=x_max, color='red', linestyle='--')
+  
+
+  # Draw line at min. value of trailing angkle.
+  if dict_params["trailing_ankle_min"] == 1:
+      x_min = trailing_ankle_x_min_value_all_images * width
+      ax.axvline(x=x_min, color='red', linestyle='--')
 
 
   # Draw center of mass.
@@ -333,8 +355,8 @@ def draw_prediction_on_image(
   if dict_params["vertical_distance_rel_txt"] == 1:    
       pos_x = width * 0.02
       pos_y = height * 0.1 # 1st pos.
-      vertical_distance_rel = round(vertical_distance / leg_length, 2)
-      text = "VD (relative to leg length): " + str(vertical_distance_rel)
+      rel_distance = round(vertical_distance / leg_length, 2)
+      text = "VD (relative to leg length): " + str(rel_distance)
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
@@ -440,6 +462,36 @@ def draw_prediction_on_image(
       pos_x = width * 0.02
       pos_y = height * 0.45 # 8th pos.
       text = "Cadence: " + str(cadence)
+      ax.text(x=pos_x,
+              y=pos_y,
+              s=text,
+              alpha = 1,
+              fontsize=24,
+              ha="left",
+              bbox=dict(facecolor='white', edgecolor='none', alpha=1, pad=5))
+  
+
+  # Add max. value of leading ankle as text.
+  if dict_params["leading_ankle_max_txt"] == 1:    
+      pos_x = width * 0.02
+      pos_y = height * 0.55 # 10th pos.
+      rel_distance = round(leading_ankle_x_max_value_all_images / leg_length, 2)
+      text = "Leading ankle max. (relative to leg length): " + str(rel_distance)
+      ax.text(x=pos_x,
+              y=pos_y,
+              s=text,
+              alpha = 1,
+              fontsize=24,
+              ha="left",
+              bbox=dict(facecolor='white', edgecolor='none', alpha=1, pad=5))
+      
+
+  # Add min. value of trailing ankle as text.
+  if dict_params["trailing_ankle_min_txt"] == 1:    
+      pos_x = width * 0.02
+      pos_y = height * 0.6 # 11th pos.
+      rel_distance = round(trailing_ankle_x_min_value_all_images / leg_length, 2)
+      text = "Trailing ankle min. (relative to leg length): " + str(rel_distance)
       ax.text(x=pos_x,
               y=pos_y,
               s=text,

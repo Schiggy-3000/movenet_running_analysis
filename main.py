@@ -5,7 +5,7 @@ from crop_image import determine_crop_region
 from model import run_inference
 from helper_functions import draw_prediction_on_image
 from determine_running_direction import determine_running_direction
-from determine_leading_ankle import determine_leading_ankle
+from determine_leading_and_trailing_ankle import determine_leading_and_trailing_ankle
 from determine_center_of_mass import determine_center_of_mass
 from determine_femur_length import determine_femur_length
 from determine_tibia_length import determine_tibia_length
@@ -65,6 +65,11 @@ dict_params["fps"] = 4                                # Duration each frame of g
 dict_params["points"] = 1                             # Show points.
 dict_params["lines"] = 0                              # Show lines between points.
 dict_params["leading_ankle"] = 1                      # Show line at leading ankle.
+dict_params["trailing_ankle"] = 1                     # Show line at trailing ankle.
+dict_params["leading_ankle_max"] = 1                  # Show line at max. value the leading ankle has reached so far.
+dict_params["trailing_ankle_min"] = 1                 # Show line at min. value the trailing ankle has reached so far.
+dict_params["leading_ankle_max_txt"] = 1              # Show max. value the leading ankle has reached so far.
+dict_params["trailing_ankle_min_txt"] = 1             # Show min. value the trialing ankle has reached so far.
 dict_params["center_of_mass"] = 1                     # Show center of mass.
 dict_params["leading_ankle_to_com"] = 1               # Show colored area between leading ankle and center of mass.
 dict_params["vertical_distance"] = 1                  # Show lines at min. and max. vertical position of center of mass.
@@ -116,6 +121,8 @@ leading_ankle_all_images = []       # The leading ankle in each frame is stored 
 cadence = 0                         # Initial cadence is set to 0. Is updated every 10 frames (= every second).
 output_images = []
 center_of_mass_y_all_images = []
+leading_ankle_x_max_value_all_images = None
+trailing_ankle_x_min_value_all_images = None
 femur_length_all_images = []
 tibia_length_all_images = []
 left_knee_angle_all_images = []
@@ -140,8 +147,15 @@ for frame_idx in range(num_frames):
   (running_direction, angle_degrees) = determine_running_direction(keypoints_with_scores, KEYPOINT_DICT)
 
 
-  # Determine leading ankle.
-  leading_ankle_x_value = determine_leading_ankle(keypoints_with_scores, KEYPOINT_DICT, running_direction)
+  # Determine leading and trailing ankle.
+  (leading_ankle_x_value,
+   trailing_ankle_x_value,
+   leading_ankle_x_max_value_all_images,
+   trailing_ankle_x_min_value_all_images) = determine_leading_and_trailing_ankle(keypoints_with_scores,
+                                                                                 KEYPOINT_DICT,
+                                                                                 running_direction,
+                                                                                 leading_ankle_x_max_value_all_images,
+                                                                                 trailing_ankle_x_min_value_all_images)
 
 
   # Determine center of mass.
@@ -184,6 +198,9 @@ for frame_idx in range(num_frames):
       image[frame_idx, :, :, :].numpy().astype(np.int32),
       keypoints_with_scores,
       leading_ankle_x_value,
+      trailing_ankle_x_value,
+      leading_ankle_x_max_value_all_images,
+      trailing_ankle_x_min_value_all_images,
       center_of_mass_x,
       center_of_mass_y,
       center_of_mass_y_all_images,
