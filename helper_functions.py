@@ -314,13 +314,13 @@ def draw_prediction_on_image(
 
   # Add femur length as text.
   if dict_params["femur_length_txt"] == 1:
-      pos_x = width * 0.35 # 2nd column
+      pos_x = width * 0.25 # 2nd column
       pos_y = height * 0.9 # 2nd last pos.
       text = "Femur length (relative to img): " + str(femur_length)
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
-              alpha = 0.3,
+              alpha=0.3,
               fontsize=24,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=0.3, pad=5))
@@ -328,13 +328,13 @@ def draw_prediction_on_image(
 
   # Add tibia length as text.
   if dict_params["tibia_length_txt"] == 1:
-      pos_x = width * 0.35 # 2nd column
+      pos_x = width * 0.25 # 2nd column
       pos_y = height * 0.95 # last pos.
       text = "Tibia length (relative to img): " + str(tibia_length)
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
-              alpha = 0.3,
+              alpha=0.3,
               fontsize=24,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=0.3, pad=5))
@@ -342,13 +342,13 @@ def draw_prediction_on_image(
 
   # Add leg length as text.
   if dict_params["leg_length_txt"] == 1:
-      pos_x = width * 0.35 # 2nd column
+      pos_x = width * 0.25 # 2nd column
       pos_y = height * 0.85 # 3th last pos.
       text = "Leg length (relative to img): " + str(leg_length)
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
-              alpha = 0.3,
+              alpha=0.3,
               fontsize=24,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=0.3, pad=5))
@@ -362,7 +362,7 @@ def draw_prediction_on_image(
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
-              alpha = 0.3,
+              alpha=0.3,
               fontsize=24,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=0.3, pad=5))
@@ -377,7 +377,7 @@ def draw_prediction_on_image(
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
-              alpha = 1,
+              alpha=1,
               fontsize=24,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=1, pad=5))
@@ -392,7 +392,7 @@ def draw_prediction_on_image(
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
-              alpha = 1,
+              alpha=1,
               fontsize=24,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=1, pad=5))
@@ -407,7 +407,7 @@ def draw_prediction_on_image(
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
-              alpha = 1,
+              alpha=1,
               fontsize=24,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=1, pad=5))
@@ -421,7 +421,7 @@ def draw_prediction_on_image(
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
-              alpha = 1,
+              alpha=1,
               fontsize=24,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=1, pad=5))
@@ -435,7 +435,7 @@ def draw_prediction_on_image(
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
-              alpha = 0.3,
+              alpha=0.3,
               fontsize=24,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=0.3, pad=5))
@@ -449,7 +449,7 @@ def draw_prediction_on_image(
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
-              alpha = 0.3,
+              alpha=0.3,
               fontsize=24,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=0.3, pad=5))
@@ -463,7 +463,7 @@ def draw_prediction_on_image(
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
-              alpha = 1,
+              alpha=1,
               fontsize=24,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=1, pad=5))
@@ -477,29 +477,59 @@ def draw_prediction_on_image(
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
-              alpha = 1,
+              alpha=1,
               fontsize=24,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=1, pad=5))
-  
 
-  # Add max. value of leading ankle to center of mass (com) as text.
-  if dict_params["leading_ankle_max_txt"] == 1:    
-      pos_x = width * 0.02
-      pos_y = height * 0.55 # 10th pos.
-      rel_distance = round(distance_com_to_leading_ankle_max / leg_length, 2)
-      text = "Leading ankle max. (relative to leg length): " + str(rel_distance)
+
+  # Add value of leading ankle to center of mass (com) as text.
+  if dict_params["leading_ankle_to_com_txt"] == 1:    
+      pos_x = width * 0.58 # 3th column
+      pos_y = height * 0.85 # 3th last pos.
+      rel_distance = round(distance_com_to_leading_ankle / leg_length, 2)
+      text = "Leading ankle to CoM (relative to leg length): " + str(rel_distance)
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
-              alpha = 1,
+              alpha=0.3,
+              fontsize=24,
+              ha="left",
+              bbox=dict(facecolor='white', edgecolor='none', alpha=0.3, pad=5))
+
+
+  # Add value of trailing ankle to center of mass (com) as text.
+  if dict_params["trailing_ankle_to_com_txt"] == 1:    
+      pos_x = width * 0.58 # 3th column
+      pos_y = height * 0.9 # 2nd last pos.
+      rel_distance = round(distance_com_to_trailing_ankle / leg_length, 2)
+      text = "Trailing ankle to CoM (relative to leg length): " + str(rel_distance)
+      ax.text(x=pos_x,
+              y=pos_y,
+              s=text,
+              alpha=0.3,
+              fontsize=24,
+              ha="left",
+              bbox=dict(facecolor='white', edgecolor='none', alpha=0.3, pad=5))
+
+
+  # Add max. value of leading ankle to center of mass (com) as text.
+  if dict_params["leading_ankle_to_com_max_txt"] == 1:    
+      pos_x = width * 0.02
+      pos_y = height * 0.55 # 10th pos.
+      rel_distance = round(distance_com_to_leading_ankle_max / leg_length, 2)
+      text = "Leading ankle to CoM max. (relative to leg length): " + str(rel_distance)
+      ax.text(x=pos_x,
+              y=pos_y,
+              s=text,
+              alpha=1,
               fontsize=24,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=1, pad=5))
       
 
   # Add max. value of trailing ankle to center of mass (com) as text.
-  if dict_params["trailing_ankle_max_txt"] == 1:    
+  if dict_params["trailing_ankle_to_com_max_txt"] == 1:    
       pos_x = width * 0.02
       pos_y = height * 0.6 # 11th pos.
       rel_distance = round(distance_com_to_trailing_ankle_max / leg_length, 2)
@@ -507,7 +537,7 @@ def draw_prediction_on_image(
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
-              alpha = 1,
+              alpha=1,
               fontsize=24,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=1, pad=5))
