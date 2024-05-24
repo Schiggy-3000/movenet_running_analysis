@@ -347,7 +347,7 @@ def draw_prediction_on_image(
   # Add left knee angle (Femur/Tibia) as text.
   if dict_params["left_knee_angle_txt"] == 1:    
       pos_x = width * 0.02
-      pos_y = height * 0.15 # 2nd pos.
+      pos_y = height * 0.2 # 3th pos.
       knee_angle = int(round(left_knee_angle, 0))
       text = "Left knee angle: " + str(knee_angle)
       ax.text(x=pos_x,
@@ -362,7 +362,7 @@ def draw_prediction_on_image(
   # Add right knee angle (Femur/Tibia) as text.
   if dict_params["right_knee_angle_txt"] == 1:    
       pos_x = width * 0.02
-      pos_y = height * 0.2 # 3th pos.
+      pos_y = height * 0.25 # 4th pos.
       knee_angle = int(round(right_knee_angle, 0))
       text = "Right knee angle: " + str(knee_angle)
       ax.text(x=pos_x,
@@ -377,7 +377,7 @@ def draw_prediction_on_image(
   # Add minimum knee angle (Femur/Tibia) as text.
   if dict_params["knee_angle_min_txt"] == 1:    
       pos_x = width * 0.02
-      pos_y = height * 0.25 # 4th pos.
+      pos_y = height * 0.3 # 5th pos.
       left_knee_angle_min = min(left_knee_angle_all_images)
       right_knee_angle_min = min(right_knee_angle_all_images)
       knee_angle_min = int(round(min(left_knee_angle_min, right_knee_angle_min), 0))
@@ -424,7 +424,7 @@ def draw_prediction_on_image(
   # Add total steps as text.
   if dict_params["total_steps"] == 1:    
       pos_x = width * 0.02
-      pos_y = height * 0.3 # 5th pos.
+      pos_y = height * 0.4 # 7th pos.
       text = "Total steps: " + str(total_steps)
       ax.text(x=pos_x,
               y=pos_y,
@@ -438,7 +438,7 @@ def draw_prediction_on_image(
   # Add cadence as text.
   if dict_params["cadence"] == 1:    
       pos_x = width * 0.02
-      pos_y = height * 0.35 # 6th pos.
+      pos_y = height * 0.45 # 8th pos.
       text = "Cadence: " + str(cadence)
       ax.text(x=pos_x,
               y=pos_y,

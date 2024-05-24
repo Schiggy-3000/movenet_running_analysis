@@ -39,11 +39,20 @@ def determine_steps(keypoints_with_scores, KEYPOINT_DICT, total_steps, running_d
     # Somethimes movenet_thunder is not that accurate and
     # the positions for (ankle) joints wiggle around significantly from frame to frame.
     # This can mess with the step count. In light of this, the step count is only increased whenever
-    # the leading ankle has changed for two consecutive frames. 
-    if len(leading_ankle_all_images) >= 3:
-        if leading_ankle_all_images[-1] == leading_ankle_all_images[-2] and leading_ankle_all_images[-1] != leading_ankle_all_images[-3]:
+    # the leading ankle has changed for several consecutive frames.
+    same_ankle_in_x_frames = 3
+    different_ankle_before_that = same_ankle_in_x_frames + 1
 
-            steps = total_steps + 1
+    # Check if array contains enough elements.
+    if len(leading_ankle_all_images) >= different_ankle_before_that:
+
+        # Check if the X newest elements are equal.
+        if leading_ankle_all_images[-same_ankle_in_x_frames:] == [leading_ankle_all_images[-1]] * same_ankle_in_x_frames:
+            
+            # Check if the element before the X newest elements is different.
+            if leading_ankle_all_images[-1] != leading_ankle_all_images[-different_ankle_before_that]:
+                
+                steps = total_steps + 1
 
 
     return steps, leading_ankle_all_images
