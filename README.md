@@ -13,9 +13,7 @@
   <p align="center">
     A running analysis tool based on tensorflow's movenet thunder model!
     <br />
-    <a href="https://github.com/Schiggy-3000/movenet_running_analysis/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
-    ·
-    <a href="https://github.com/Schiggy-3000/movenet_running_analysis/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://www.tensorflow.org/hub/tutorials/movenet">TensorFlow MoveNet</a>
   </p>
 </div>
 
@@ -35,7 +33,7 @@
 
 ## About The Project
 
-Tensorflow built a model for pose estimation based on computer vision techniques that detect human figures in images and videos, so that one could determine, for example, where someone's elbow shows up in an image. The pose estimation models takes a processed camera image as input and outputs information about keypoints. The keypoints detected are indexed by a part ID:
+Tensorflow built several model for [pose estimation](https://www.tensorflow.org/lite/examples/pose_estimation/overview) based on computer vision techniques that detect human figures in images and videos, so that one could determine, for example, where someone's elbow shows up in an image. The pose estimation models takes a processed camera image as input and outputs information about keypoints. The keypoints detected are indexed by a part ID:
 
 * nose: 0
 * left_eye: 1
@@ -63,7 +61,7 @@ This project builds on top of this pretrained model, using its infered keypoints
 
 ## Example
 
-Following an example of some parameters that are extracted by the movenet_running_analysis script.
+Following an example of some parameters that are extracted by the movenet_running_analysis scripts.
 
 ![ANNOTATED_jes_woods_nike_coach](https://github.com/Schiggy-3000/movenet_running_analysis/raw/main/Processed_data/Gifs/ANNOTATED_jes_woods_nike_coach.gif)
 

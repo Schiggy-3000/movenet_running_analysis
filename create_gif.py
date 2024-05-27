@@ -7,6 +7,10 @@ def create_gif(images, duration, gif_dir, gif_name):
   """Converts image sequence (4D numpy array) to gif."""
 
   storage_location = gif_dir + 'ANNOTATED_' + gif_name
-  imageio.mimsave(storage_location, images, duration=duration)
+  imageio.mimsave(storage_location,
+                  images,
+                  duration=duration,
+                  loop=0 # Makes gif run infinitely
+                  )
   
   return embed.embed_file(storage_location)

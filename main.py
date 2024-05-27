@@ -62,7 +62,7 @@ KEYPOINT_DICT = {
 print("------------------------------------------------------------------------")
 print("Read configurations ...")
 dict_params = {}
-dict_params["fps"] = 4                                # Duration each frame of gif will be shown. Careful, determine_cadence.py is influenced by this.
+dict_params["fps"] = 10                               # Duration each frame of gif will be shown. Careful, determine_cadence.py is influenced by this.
 dict_params["points"] = 1                             # Show points where joints are.
 dict_params["lines"] = 0                              # Show lines between points (joints).
 dict_params["leading_ankle"] = 1                      # Show line at leading ankle.
