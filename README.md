@@ -5,7 +5,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Schiggy-3000/movenet_running_analysis">
-    <img src="/Miscellaneous/tensor_flow_logo.png" alt="Logo" width="80" height="80">
+    <img src="/Miscellaneous/tensor_flow_logo.png" alt="Logo" style="width: 200px; height: auto;">
   </a>
 
   <h3 align="center">Movenet Running Analysis</h3>
