@@ -5,13 +5,13 @@
 <br />
 <div align="center">
   <a href="https://github.com/Schiggy-3000/movenet_running_analysis">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="/Miscellaneous/tensor_flow_logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Movenet Running Analysis</h3>
 
   <p align="center">
-    A running analysis tool based on tensorfolwos movenet thunder!
+    A running analysis tool based on tensorflow's movenet thunder model!
     <br />
     <a href="https://github.com/Schiggy-3000/movenet_running_analysis"><strong>Explore the docs »</strong></a>
     <br />
