@@ -1,13 +1,5 @@
 <a name="readme-top"></a>
 
-
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a href="https://github.com/Schiggy-3000/movenet_running_analysis">
-    <img src="/Miscellaneous/tensor_flow_logo.png" alt="Logo" style="width: 200px; height: auto;">
-  </a>
-
   <h3 align="center">Movenet Running Analysis</h3>
 
   <p align="center">
@@ -33,7 +25,7 @@
 
 ## About The Project
 
-Tensorflow built several model for [pose estimation](https://www.tensorflow.org/lite/examples/pose_estimation/overview) based on computer vision techniques that detect human figures in images and videos, so that one could determine, for example, where someone's elbow shows up in an image. The pose estimation models takes a processed camera image as input and outputs information about keypoints. The keypoints detected are indexed by a part ID:
+Tensorflow built several model for [pose estimation](https://www.tensorflow.org/lite/examples/pose_estimation/overview) based on computer vision techniques that detect human figures in images and videos, so that one could determine, for example, where someone's elbow shows up in an image. The pose estimation models takes a processed camera image as input and outputs information about keypoints. The keypoints detected are as following:
 
 * nose: 0
 * left_eye: 1
@@ -53,7 +45,7 @@ Tensorflow built several model for [pose estimation](https://www.tensorflow.org/
 * left_ankle: 15
 * right_ankle: 16
 
-This project builds on top of this pretrained model, using its infered keypoints for analysing running techniques in athletes.  
+This project builds on top of this pretrained model, using its infered keypoints for running analysis in athletes.  
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
