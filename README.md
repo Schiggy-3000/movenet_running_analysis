@@ -55,7 +55,7 @@ This project builds on top of this pretrained model, using its infered keypoints
 
 Following an example of some parameters that are extracted by the movenet_running_analysis scripts.
 
-![ANNOTATED_jes_woods_nike_coach](https://github.com/Schiggy-3000/movenet_running_analysis/raw/main/Processed_data/Gifs/ANNOTATED_jes_woods_nike_coach.gif)
+![ANNOTATED_jes_woods_nike_coach](https://github.com/Schiggy-3000/movenet_running_analysis/raw/main/Processed_data/Gifs/ANNOTATED_jes_woods_nike_coach_1.gif)
 
 - **VD (relative to leg length)** is the maximum vertical distance the center of mass has traveled.
 - **Left knee angle** is the angle formed by ankle, knee and hip of the left leg.
