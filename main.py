@@ -3,7 +3,7 @@ import tensorflow as tf
 from crop_image import init_crop_region
 from crop_image import determine_crop_region
 from model import run_inference
-from helper_functions import draw_prediction_on_image
+from draw_metrics_on_image import draw_prediction_on_image
 from determine_running_direction import determine_running_direction
 from determine_leading_and_trailing_ankle import determine_leading_and_trailing_ankle
 from determine_center_of_mass import determine_center_of_mass
