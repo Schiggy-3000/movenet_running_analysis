@@ -2,20 +2,25 @@
 .venv/
 __pycache__/
 
-# Ignore everything in Processed_data by default
+# Ignore everything in Processed_data and Raw_data by default
 Processed_data/**
 Raw_data/**
 
-# Allow the main Processed_data directory
+# Allow the main directories
 !Processed_data/
 !Raw_data/
 
-# Allow specific subdirectories
+# Allow specific subdirectories in Processed_data and Raw_data
 !Processed_data/Videos/
 !Processed_data/Gifs/
 !Raw_data/Gifs/
 
-# Allow only example files in those subdirectories
+# Ignore all files in the specific subdirectories
+Processed_data/Videos/*
+Processed_data/Gifs/*
+Raw_data/Gifs/*
+
+# Allow only the specific example files
 !Processed_data/Videos/example_analysis.mp4
 !Processed_data/Gifs/example_analysis.gif
 !Raw_data/Gifs/example_analysis.gif
