@@ -65,15 +65,7 @@ This project builds on top of this pretrained model, using its infered keypoints
 
 Following an example of some parameters that are extracted by the movenet_running_analysis script.
 
-[ANNOTATED_jes_woods_nike_coach.gif](https://github.com/Schiggy-3000/movenet_running_analysis/blob/main/Processed_data/Gifs/ANNOTATED_jes_woods_nike_coach.gif)
-
 ![ANNOTATED_jes_woods_nike_coach](https://github.com/Schiggy-3000/movenet_running_analysis/raw/main/Processed_data/Gifs/ANNOTATED_jes_woods_nike_coach.gif)
-
-
-<video width="320" height="240" controls>
-  <source src="https://github.com/Schiggy-3000/movenet_running_analysis/raw/main/Processed_data/Gifs/ANNOTATED_jes_woods_nike_coach.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
