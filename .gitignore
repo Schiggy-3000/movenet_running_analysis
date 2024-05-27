@@ -4,14 +4,18 @@ __pycache__/
 
 # Ignore everything in Processed_data by default
 Processed_data/**
+Raw_data/**
 
 # Allow the main Processed_data directory
 !Processed_data/
+!Raw_data/
 
 # Allow specific subdirectories
 !Processed_data/Videos/
 !Processed_data/Gifs/
+!Raw_data/Gifs/
 
-# Allow only .gitkeep files in those subdirectories
-!Processed_data/Videos/.gitkeep
-!Processed_data/Gifs/.gitkeep
+# Allow only example files in those subdirectories
+!Processed_data/Videos/example_analysis.mp4
+!Processed_data/Gifs/example_analysis.gif
+!Raw_data/Gifs/example_analysis.gif

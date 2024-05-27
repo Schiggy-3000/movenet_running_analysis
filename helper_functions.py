@@ -215,6 +215,17 @@ def draw_prediction_on_image(
   knee_angle_min = int(min(left_knee_angle_min, right_knee_angle_min))
 
 
+  # Presets
+  font_size = 24 # The font size that parameters are written on the image (e.g. "Total steps: ...").
+
+
+
+  # ---------------------------------------------------
+  # --------------- Geometries on image ---------------
+  # ---------------------------------------------------
+
+
+
   # Draw lines between joints.
   if dict_params["lines"] == 1:
     line_segments.set_segments(keypoint_edges)
@@ -312,6 +323,13 @@ def draw_prediction_on_image(
       ax.axhline(y=y_min, color='orange', linestyle='--')
   
 
+
+  # ---------------------------------------------------
+  # ------------------ Text on image ------------------
+  # ---------------------------------------------------
+
+
+
   # Add femur length as text.
   if dict_params["femur_length_txt"] == 1:
       pos_x = width * 0.25 # 2nd column
@@ -321,7 +339,7 @@ def draw_prediction_on_image(
               y=pos_y,
               s=text,
               alpha=0.3,
-              fontsize=24,
+              fontsize=font_size,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=0.3, pad=5))
     
@@ -335,7 +353,7 @@ def draw_prediction_on_image(
               y=pos_y,
               s=text,
               alpha=0.3,
-              fontsize=24,
+              fontsize=font_size,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=0.3, pad=5))
       
@@ -349,28 +367,28 @@ def draw_prediction_on_image(
               y=pos_y,
               s=text,
               alpha=0.3,
-              fontsize=24,
+              fontsize=font_size,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=0.3, pad=5))
   
 
   # Add vertical distance (relative to img) as text.
   if dict_params["vertical_distance_txt"] == 1:    
-      pos_x = width * 0.02
+      pos_x = width * 0.02 # 1st column
       pos_y = height * 0.95 # last pos.
       text = "VD (relative to img): " + str(vertical_distance)
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
               alpha=0.3,
-              fontsize=24,
+              fontsize=font_size,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=0.3, pad=5))
 
 
   # Add vertical distance (relative to leg length) as text.
   if dict_params["vertical_distance_rel_txt"] == 1:    
-      pos_x = width * 0.02
+      pos_x = width * 0.02 # 1st column
       pos_y = height * 0.1 # 1st pos.
       rel_distance = round(vertical_distance / leg_length, 2)
       text = "VD (relative to leg length): " + str(rel_distance)
@@ -378,107 +396,107 @@ def draw_prediction_on_image(
               y=pos_y,
               s=text,
               alpha=1,
-              fontsize=24,
+              fontsize=font_size,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=1, pad=5))
 
 
   # Add left knee angle (Femur/Tibia) as text.
   if dict_params["left_knee_angle_txt"] == 1:    
-      pos_x = width * 0.02
+      pos_x = width * 0.02 # 1st column
       pos_y = height * 0.2 # 3th pos.
       knee_angle = int(round(left_knee_angle, 0))
-      text = "Left knee angle: " + str(knee_angle)
+      text = "Left knee angle: " + str(knee_angle) + "°"
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
               alpha=1,
-              fontsize=24,
+              fontsize=font_size,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=1, pad=5))
 
 
   # Add right knee angle (Femur/Tibia) as text.
   if dict_params["right_knee_angle_txt"] == 1:    
-      pos_x = width * 0.02
+      pos_x = width * 0.02 # 1st column
       pos_y = height * 0.25 # 4th pos.
       knee_angle = int(round(right_knee_angle, 0))
-      text = "Right knee angle: " + str(knee_angle)
+      text = "Right knee angle: " + str(knee_angle) + "°"
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
               alpha=1,
-              fontsize=24,
+              fontsize=font_size,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=1, pad=5))
 
 
   # Add minimum knee angle (Femur/Tibia) as text.
   if dict_params["knee_angle_min_txt"] == 1:    
-      pos_x = width * 0.02
+      pos_x = width * 0.02 # 1st column
       pos_y = height * 0.3 # 5th pos.
-      text = "Knee angle min.: " + str(knee_angle_min)
+      text = "Knee angle min.: " + str(knee_angle_min) + "°"
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
               alpha=1,
-              fontsize=24,
+              fontsize=font_size,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=1, pad=5))
 
   
   # Add minimum left knee angle (Femur/Tibia) as text.
   if dict_params["left_knee_angle_min_txt"] == 1:    
-      pos_x = width * 0.02
+      pos_x = width * 0.02 # 1st column
       pos_y = height * 0.85 # 3th last pos.
-      text = "Min. left knee angle: " + str(left_knee_angle_min)
+      text = "Min. left knee angle: " + str(left_knee_angle_min) + "°"
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
               alpha=0.3,
-              fontsize=24,
+              fontsize=font_size,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=0.3, pad=5))
 
 
   # Add minimum right knee angle (Femur/Tibia) as text.
   if dict_params["right_knee_angle_min_txt"] == 1:    
-      pos_x = width * 0.02
+      pos_x = width * 0.02 # 1st column
       pos_y = height * 0.9 # 2nd last pos.
-      text = "Min. right knee angle: " + str(right_knee_angle_min)
+      text = "Min. right knee angle: " + str(right_knee_angle_min) + "°"
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
               alpha=0.3,
-              fontsize=24,
+              fontsize=font_size,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=0.3, pad=5))
 
 
   # Add total steps as text.
   if dict_params["total_steps"] == 1:    
-      pos_x = width * 0.02
+      pos_x = width * 0.02 # 1st column
       pos_y = height * 0.4 # 7th pos.
       text = "Total steps: " + str(total_steps)
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
               alpha=1,
-              fontsize=24,
+              fontsize=font_size,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=1, pad=5))
 
 
   # Add cadence as text.
   if dict_params["cadence"] == 1:    
-      pos_x = width * 0.02
+      pos_x = width * 0.02 # 1st column
       pos_y = height * 0.45 # 8th pos.
       text = "Cadence: " + str(cadence)
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
               alpha=1,
-              fontsize=24,
+              fontsize=font_size,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=1, pad=5))
 
@@ -493,7 +511,7 @@ def draw_prediction_on_image(
               y=pos_y,
               s=text,
               alpha=0.3,
-              fontsize=24,
+              fontsize=font_size,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=0.3, pad=5))
 
@@ -508,37 +526,37 @@ def draw_prediction_on_image(
               y=pos_y,
               s=text,
               alpha=0.3,
-              fontsize=24,
+              fontsize=font_size,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=0.3, pad=5))
 
 
   # Add max. value of leading ankle to center of mass (com) as text.
   if dict_params["leading_ankle_to_com_max_txt"] == 1:    
-      pos_x = width * 0.02
-      pos_y = height * 0.55 # 10th pos.
+      pos_x = width * 0.02 # 1st column
+      pos_y = height * 0.9 # 2nd last pos.
       rel_distance = round(distance_com_to_leading_ankle_max / leg_length, 2)
       text = "Leading ankle to CoM max. (relative to leg length): " + str(rel_distance)
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
               alpha=1,
-              fontsize=24,
+              fontsize=font_size,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=1, pad=5))
       
 
   # Add max. value of trailing ankle to center of mass (com) as text.
   if dict_params["trailing_ankle_to_com_max_txt"] == 1:    
-      pos_x = width * 0.02
-      pos_y = height * 0.6 # 11th pos.
+      pos_x = width * 0.02 # 1st column
+      pos_y = height * 0.95 # last pos.
       rel_distance = round(distance_com_to_trailing_ankle_max / leg_length, 2)
       text = "Trailing ankle max. (relative to leg length): " + str(rel_distance)
       ax.text(x=pos_x,
               y=pos_y,
               s=text,
               alpha=1,
-              fontsize=24,
+              fontsize=font_size,
               ha="left",
               bbox=dict(facecolor='white', edgecolor='none', alpha=1, pad=5))
 
