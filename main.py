@@ -62,7 +62,7 @@ KEYPOINT_DICT = {
 print("------------------------------------------------------------------------")
 print("Read configurations ...")
 dict_params = {}
-dict_params["fps"] = 4                                # Duration each frame of gif will be shown.
+dict_params["fps"] = 4                                # Duration each frame of gif will be shown. Careful, determine_cadence.py is influenced by this.
 dict_params["points"] = 1                             # Show points where joints are.
 dict_params["lines"] = 0                              # Show lines between points (joints).
 dict_params["leading_ankle"] = 1                      # Show line at leading ankle.
@@ -100,8 +100,8 @@ video_dir = './Processed_data/Videos/'                # Running analysis is stor
 gif_dir = './Processed_data/Gifs/'                    # Running analysis is stored as GIF in this folder.
 gif_name = 'eliud_kipchoge_sub2_marathon.gif'
 #gif_name = 'jes_woods_nike_coach.gif'
-#gif_name = 'haile_gebrselassie_olympion_gold.gif'
-gif_name = 'random_man.gif'
+gif_name = 'haile_gebrselassie_olympion_gold.gif'
+#gif_name = 'random_man.gif'
 image = tf.io.read_file(raw_data_dir + gif_name)
 image = tf.image.decode_gif(image)
 num_frames, image_height, image_width, _ = image.shape
