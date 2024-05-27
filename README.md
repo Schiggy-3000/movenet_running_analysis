@@ -13,9 +13,6 @@
   <p align="center">
     A running analysis tool based on tensorflow's movenet thunder model!
     <br />
-    <a href="https://github.com/Schiggy-3000/movenet_running_analysis"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
     <a href="https://github.com/Schiggy-3000/movenet_running_analysis/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
     <a href="https://github.com/Schiggy-3000/movenet_running_analysis/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
@@ -70,7 +67,7 @@ Following an example of some parameters that are extracted by the movenet_runnin
 
 [ANNOTATED_jes_woods_nike_coach.gif](https://github.com/Schiggy-3000/movenet_running_analysis/blob/main/Processed_data/Gifs/ANNOTATED_jes_woods_nike_coach.gif)
 
-
+![ANNOTATED_jes_woods_nike_coach](https://github.com/Schiggy-3000/movenet_running_analysis/raw/main/Processed_data/Gifs/ANNOTATED_jes_woods_nike_coach.gif)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -84,12 +81,25 @@ Clone and apply this running analysis tool on your own device.
    ```GitHub CLI
    gh repo clone Schiggy-3000/movenet_running_analysis
    ```
-2. Build a virtual environment.
+2. Navigate to project
    ```sh
-   cd \path\to\your\project
+   cd \path\to\movenet_running_analysis
+   ```
+3. Build virtual environment
+   ```sh
    python -m venv myvenv
+   ```
+4. Activate virtual environment
+   ```sh
    .\myvenv\Scripts\activate
+   ```
+5. Install dependencies
+   ```sh
    pip install -r requirements.txt
+   ```
+6. Execute main.py
+   ```sh
+   python.exe .\main.py
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
