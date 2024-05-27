@@ -13,5 +13,5 @@ Processed_data/**
 !Processed_data/Gifs/
 
 # Allow only example files in those subdirectories
-!Processed_data/Videos/ANNOTATED_jes_woods_nike_coach.mp4
-!Processed_data/Gifs/ANNOTATED_jes_woods_nike_coach.gif
+!Processed_data/Videos/ANNOTATED_jes_woods_nike_coach_1.mp4
+!Processed_data/Gifs/ANNOTATED_jes_woods_nike_coach_1.gif
