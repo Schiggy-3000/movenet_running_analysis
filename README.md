@@ -57,14 +57,14 @@ Following an example of some parameters that are extracted by the movenet_runnin
 
 ![ANNOTATED_jes_woods_nike_coach](https://github.com/Schiggy-3000/movenet_running_analysis/raw/main/Processed_data/Gifs/ANNOTATED_jes_woods_nike_coach.gif)
 
-- **VD (relative to leg length)** is the vertical distance the center of mass travels.
-- **Left knee angle** is the angle formed by the ankle, knee and hip of the left leg.
-- **Right knee angle** is the angle formed by the ankle, knee and hip of the right leg.
+- **VD (relative to leg length)** is the maximum vertical distance the center of mass has traveled.
+- **Left knee angle** is the angle formed by ankle, knee and hip of the left leg.
+- **Right knee angle** is the angle formed by ankle, knee and hip of the right leg.
 - **Knee angle min.** is the minimum angle formed by the ankle, knee and hip of either leg.
 - **Total steps** is a counter of the steps taken.
 - **Cadence** measures steps per minute.
-- **Leading ankle to CoM max. (...)** the maximum distance an ankle came in front of the center of mass (CoM).
-- **Trailing ankle max. (...)** the maximum distance an ankle traveled behind the center of mass (CoM).
+- **Leading ankle to CoM max. (relative to leg length)** the maximum distance an ankle came in front of the center of mass (CoM).
+- **Trailing ankle max. (relative to leg length)** the maximum distance an ankle traveled behind the center of mass (CoM).
 
 There are plenty more metrics that can be toggled, depending on the analysis one aims to do.
 
