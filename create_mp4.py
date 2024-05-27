@@ -9,7 +9,7 @@ def create_mp4(images, video_dir, video_name):
     # Define the storage location.
     storage_location = video_dir + 'ANNOTATED_' + video_name
 
-    # Save the video using imageio.
+    # Save video.
     # Default FPS = 10 (Rechtsklick auf Video > Eigenschaften > Details > Einzelbildrate).
     imageio.mimwrite(uri=storage_location, ims=images)
 

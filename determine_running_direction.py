@@ -26,10 +26,6 @@ def determine_running_direction(keypoints_with_scores, KEYPOINT_DICT):
     left_ankle_x = keypoints_with_scores[0][0][left_ankle][1]
     left_ankle_y = keypoints_with_scores[0][0][left_ankle][0]
 
-    #print("left hip x: ", left_hip_x, ", left hip y: ", left_hip_y)
-    #print("left knee x: ", left_knee_x, ", left knee y: ", left_knee_y)
-    #print("left ankle x: ", left_ankle_x, ", left ankle y: ", left_ankle_y)
-
 
     # The following calculations determine the angle between two vectors in clockwise directions.
     # Vector 1: From left knee to left hip.

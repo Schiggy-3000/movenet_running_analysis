@@ -1,4 +1,4 @@
-# This function NEEDS TO BE STREAMLINED.
+# This function can be streamlined.
 # The step counter is still messed up whenever movenet_thunder keypoints wiggle around too much.
 
 
