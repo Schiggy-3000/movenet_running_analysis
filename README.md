@@ -45,7 +45,9 @@ Tensorflow built several models for [pose estimation](https://www.tensorflow.org
 * left_ankle: 15
 * right_ankle: 16
 
-This project builds on top of one of these pretrained models, MoveNet Thunder, using its infered keypoints for running analysis in athletes.  
+This project builds on top of one of these pretrained models, MoveNet Thunder, using its infered keypoints for running analysis in athletes (see 'Example' section down below). This iteration of the project is solely concerned with extracting relevant parameters from brief video sequences. The main.py script allows to toggle between parameters of interest.
+
+The next iteration of the project implements real time camera input, while still extracting analytics from the video stream. This necessitates optimized code such that the frame rate is still adequate for analysis.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
