@@ -25,7 +25,7 @@
 
 ## About The Project
 
-Tensorflow built several model for [pose estimation](https://www.tensorflow.org/lite/examples/pose_estimation/overview) based on computer vision techniques that detect human figures in images and videos, so that one could determine, for example, where someone's elbow shows up in an image. The pose estimation models takes a processed camera image as input and outputs information about keypoints. The keypoints detected are as following:
+Tensorflow built several models for [pose estimation](https://www.tensorflow.org/lite/examples/pose_estimation/overview) based on computer vision techniques that detect human figures in images and videos. This allows, for example, to determine where someone's elbow shows up in an image. These pose estimation models take processed camera images as input and return information about keypoints, such as eyes, shoulders, and knees. Following the conclusive list of keypoints detected by these models.
 
 * nose: 0
 * left_eye: 1
