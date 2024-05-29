@@ -45,7 +45,7 @@ Tensorflow built several models for [pose estimation](https://www.tensorflow.org
 * left_ankle: 15
 * right_ankle: 16
 
-This project builds on top of this pretrained model, using its infered keypoints for running analysis in athletes.  
+This project builds on top of one of these pretrained models, MoveNet Thunder, using its infered keypoints for running analysis in athletes.  
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
